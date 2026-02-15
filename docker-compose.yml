@@ -1,0 +1,30 @@
+# Cold Outreach Engine (SMB 02) — run with: docker compose up --build
+# Model is pulled from web on first run (phi3:mini - small, fast)
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: outreach-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: outreach-app
+    ports:
+      - "8000:8000"
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: phi3:mini
+    volumes:
+      - outreach_data:/app/data
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+  outreach_data:
