@@ -1,4 +1,4 @@
-# Cold Outreach Engine — SMB 02
+# Outreach Engine 
 
 **Offline LLM-powered hyper-personalized cold outreach.**  
 One script starts everything: model is pulled from the web (runs on **&lt;8GB RAM**), server starts, and the frontend lets you upload CSV/JSON/PDF and view **chat history** (past outreach). Runs locally or via **Docker**.
